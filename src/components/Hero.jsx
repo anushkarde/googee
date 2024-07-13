@@ -8,10 +8,7 @@ const Hero = () => {
           <div className="flex flex-row w-full h-full">
 
             <div className="flex flex-col p-6">
-              <div class="grid grid-cols-4 gap-4">
-                <div>01</div>
-                <div>09</div>
-              </div>
+              
             </div>
 
             <div className="flex flex-col mt-72 fixed left-1/2">
