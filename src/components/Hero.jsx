@@ -3,23 +3,23 @@ import React from 'react';
 const Hero = () => {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <div className="hover:card-wrapper h-screen w-5/6 lg:w-10/12 rounded-5xl shadow-lg">
-        <div className="card-content relative bg-white flex flex-col">
+      <div className="hover:card-wrapper h-screen w-11/12 rounded-5xl shadow-lg">
+        <div className="card-content flex flex-col">
           <div className="flex flex-row w-full h-full">
 
             <div className="flex flex-col p-6">
               
             </div>
 
-            <div className="flex flex-col mt-72 fixed left-1/2">
-              <h1 className="text-3xl font-bold text-shadow-lg">Anushka De</h1>
-              <p className="mt-9 text-md font-light fixed">
+            <div className="flex flex-col mt-40 md:mt-72 md:fixed left-1/2">
+              <h1 className="text-2xl md:text-3xl font-bold text-shadow-lg">Anushka De</h1>
+              <p className="md:mt-10 text-sm md:text-md font-light md:fixed">
                 Computer Science @ 
                 <span className="bg-gradient-to-r font-bold from-red-800 to-red-700 text-transparent bg-clip-text">
                   {" "}Stanford
                 </span>
               </p>
-              <div className="mt-8 text-sm text-slate-400 flex justify-center" style={{ marginLeft: '-0.75rem' }}>
+              <div className="mt-2 md:mt-8 text-xs lg:text-sm text-slate-400 flex justify-center" style={{ marginLeft: '-0.75rem' }}>
                 <a href="https://www.linkedin.com/in/anushkadde/" className="relative transition duration-300 ease-in-out hover:bg-gradient-to-r from-red-800 to-red-700 hover:text-white px-3 py-1 rounded-full" target="_blank">
                   <span className="hover:text-white">LinkedIn</span>
                 </a>
@@ -38,6 +38,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* <div className="card-wrapper h-screen w-11/12 rounded-5xl shadow-lg">
+        
+      </div> */}
     </div>
   );
 };
