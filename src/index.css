@@ -7,7 +7,7 @@
   font-family: "Inter", sans-serif;
   color-scheme: light dark;
   --gradient: 45deg, white, #f9f8f8, white, rgb(238, 223, 223);
-  --dark_gradient: 45deg, #171717, #262525, rgb(0, 0, 0), rgb(85, 2, 2);
+  --dark_gradient: 45deg, #171717, #262525, rgb(0, 0, 0), rgb(119, 7, 7);
 }
 
 
