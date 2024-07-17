@@ -24,6 +24,13 @@ export default {
         '5xl': '2.5rem',
         // You can add more custom values as needed
       },
+      boxShadow: {
+        'custom-inset': 'inset 0 4px 40px rgba(0, 0, 0, 0.05), inset 0 4px 4px rgba(0, 0, 0, 0.05), inset 0 -2px 2px rgba(0, 0, 0, 0.05)',
+        'custom-inset-dark': 'inset 0 2px 40px rgba(0, 0, 0, 0.1), inset 0 2px 40px rgba(0, 0, 0, 0.1), inset 0 -4px 40px rgba(0, 0, 0, 0.05)',
+      },
+      transitionDuration: {
+        'custom': '0.5s',
+      },
     },
   },
   plugins: [],

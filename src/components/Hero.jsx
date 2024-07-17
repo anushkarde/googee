@@ -1,12 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import aiPic from '../assets/ai_pic.svg';
+import Projects from './Projects';
 
 const Hero = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
+  const imageRef = useRef(null);
 
   useEffect(() => {
     document.body.classList.toggle('dark', darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          setShowProjects(true);
+        } else {
+          setShowProjects(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, [imageRef]);
   
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -15,27 +41,39 @@ const Hero = () => {
 
   return ( 
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <div className="hover:card-wrapper h-screen w-11/12 rounded-5xl shadow-2xl dark:shadow-gray-600 dark:bg-gray-800">
-        <div className="card-content flex flex-col dark:text-white transition-colors duration-200">
-          <div id="toggle" onClick={toggleDarkMode}>
-            <div className="indicator"></div>
-          </div>
-          <div className="flex flex-col md:flex-row w-full h-full">
+      <div className="hover:card-wrapper h-1/2 w-11/12 rounded-5xl shadow-2xl dark:shadow-gray-600 dark:bg-gray-800">
+          <div className="card-content grid grid-cols-1 md:grid-cols-2 dark:text-white transition-colors duration-200">
+            <div id="toggle" onClick={toggleDarkMode}>
+              <div className="indicator"></div>
+            </div>
+            <div className="flex flex-col md:flex-row">
+            
+            <div className="md:w-1/2">
+              <div className="flex flex-col">
+                {/* PIC */}
+                <div className="flex justify-center">
+                  <img
+                    src={aiPic}
+                    alt="AI"
+                    className="mt-10 md:mt-36 w-3/4 h-3/4 md:w-2/3 md:h-4/6 object-contain rounded-lg"
+                  />
+                </div>
 
-          <div className="flex justify-center md:justify-left">
-            <img src={aiPic} alt="AI" className="mt-10 md:mt-36 w-5/6 h-5/6 md:w-4/6 md:h-4/6 object-contain rounded-lg " />
-          </div>
+                <Projects />
+              </div>
+            </div>
 
-            <div className="flex flex-col -mt-5 md:mt-72 md:fixed left-1/2">
+          
+            <div className="flex flex-col -mt-5 md:mt-60 md:fixed left-1/2">
               <h1 className="text-2xl md:text-3xl ml-9 md:ml-0 font-bold text-shadow-lg text-black dark:text-white transition-colors duration-50">Anushka De</h1>
               <p className="md:mt-10 text-sm md:text-md font-light md:fixed text-gray-500 dark:text-gray-300 ml-9 md:ml-0">
-                Computer Science @ 
+                Computer Science @
                 <span className="bg-gradient-to-r font-bold from-red-800 to-red-700 dark:from-red-600 dark:to-red-600 text-transparent bg-clip-text transition-colors duration-200">
                   {" "}Stanford
                 </span>
               </p>
-              <div className="mt-2 md:mt-8 text-xs lg:text-sm text-gray-400 dark:text-gray-300 flex md:justify-center ml-6 md:-ml-3">
 
+              <div className="mt-2 md:mt-8 text-xs lg:text-sm text-gray-400 dark:text-gray-300 flex md:justify-center ml-6 md:-ml-3">
                 <a href="https://www.linkedin.com/in/anushkadde/" className="relative transition duration-300 ease-in-out hover:bg-gradient-to-r from-red-800 to-red-700 hover:text-white px-3 py-1 rounded-full" target="_blank">
                   <span className="hover:text-white">LinkedIn</span>
                 </a>
@@ -50,15 +88,11 @@ const Hero = () => {
                 </a>
               </div>
             </div>
-            
           </div>
+          
         </div>
       </div>
-
-
-      {/* <div className="card-wrapper h-screen w-11/12 rounded-5xl shadow-lg">
-        
-      </div> */}
+      
     </div>
   );
 };
