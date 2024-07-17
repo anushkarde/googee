@@ -1,7 +1,29 @@
 import { CheckCircle2 } from "lucide-react"
 import { pricingOptions } from "../constants"
+import { useEffect } from "react";
 
 const Pricing = () => {
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            console.log(entry);
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+            } else {
+              entry.target.classList.remove('show');
+            }
+          });
+        });
+    
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    
+        // Cleanup observer on component unmount
+        return () => {
+          hiddenElements.forEach((el) => observer.unobserve(el));
+        };
+      }, []);
+
   return (
     <div id="pricing" className="mt-20">
         <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center my-8 tracking-wider">

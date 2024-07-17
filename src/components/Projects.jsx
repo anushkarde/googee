@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Projects = () => {
+const Projects = () => {    
   return (
     <div className="mt-60 flex flex-col gap-11 justify-center min-h-screen items-center">
         <div className="relative h-44 w-2/3 group">
