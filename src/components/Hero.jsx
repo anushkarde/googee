@@ -4,40 +4,14 @@ import Projects from './Projects';
 
 const Hero = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [showProjects, setShowProjects] = useState(false);
-  const imageRef = useRef(null);
 
   useEffect(() => {
     document.body.classList.toggle('dark', darkMode);
   }, [darkMode]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          setShowProjects(true);
-        } else {
-          setShowProjects(false);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
-    }
-
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
-    };
-  }, [imageRef]);
   
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-  
 
   return ( 
     <div className="flex flex-col justify-center items-center min-h-screen">
