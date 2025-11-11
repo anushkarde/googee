@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import aiPic from '../assets/ai_pic.svg';
+import meBlack from '../assets/me-black.png';
+import meWhite from '../assets/me-white.png';
 import Projects from './Projects';
 
 const Hero = () => {
@@ -27,9 +28,9 @@ const Hero = () => {
                 {/* PIC */}
                 <div className="flex justify-center">
                   <img
-                    src={aiPic}
+                    src={darkMode ? meBlack : meWhite}
                     alt="AI"
-                    className="mt-10 md:mt-36 w-3/4 h-3/4 md:w-2/3 md:h-4/6 object-contain rounded-lg"
+                    className="mt-10 md:mt-36 w-full md:w-full h-auto object-contain rounded-lg"
                   />
                 </div>
 
