@@ -10,46 +10,92 @@ const Projects = () => {
     { 
       id: 'research', 
       title: 'Research', 
-      company: 'Stanford School of Medicine', 
-      cardTitle: 'Research Assistant',
-      description: 'Benchmarked ViTs and foundation models for cell-type annotation in spatial proteomics imaging using TensorFlow and Docker.' 
+      items: [
+        {
+          company: 'Stanford School of Medicine',
+          cardTitle: 'Research Assistant',
+          description: 'Imagine generating virtual tissue scans to simulate clinical trials and explore new cancer treatments. Imagination will take you everywhere.'
+        }
+      ]
     },
+  
     { 
-      id: 'bridgewater', 
-      title: 'Investment Engineer', 
-      company: 'Bridgewater', 
-      cardTitle: 'Investment Engineer',
-      description: 'Built a real-time global trade-flow indicator to drive FX signals and strategy. Developed a systematic 2Y bond strategy across 45 countries.' 
+      id: 'work',
+      title: 'Work',
+      items: [
+        {
+          company: 'Bridgewater',
+          cardTitle: 'Investment Engineer Intern',
+          description: 'Traded macro on the currencies desk. Never short the S&P or JGBs (even though everything tells you that you should totally short JGBs).'
+        },
+        {
+          company: 'BLNG AI',
+          cardTitle: 'AI/ML Intern',
+          description: 'I love jewelry. Thought it would be cool to work somewhere trying to generate it.'
+        },
+        {
+          company: 'Amazon',
+          cardTitle: 'Software Development Engineer Intern',
+          description: '"Hey Alexa, make it faster to move your audio data."'
+        },
+        {
+          company: 'Supermoon Capital',
+          cardTitle: 'Investment Analyst Intern',
+          description: 'Bet early on teams trying to fix the one thing humans still can’t optimize: sleep.'
+        }
+      ]
     },
+  
     { 
-      id: 'blng', 
-      title: 'AI/ML Intern', 
-      company: 'BLNG AI', 
-      cardTitle: 'AI/ML Intern',
-      description: 'Fine-tuned diffusion models using ComfyUI workflows for photorealistic jewelry generation and enhanced data pipelines.' 
+      id: 'projects', 
+      title: 'Projects', 
+      items: [
+        {
+          company: 'Stanford Byers Center for Biodesign',
+          cardTitle: 'Nourish',
+          description: 'Built an iOS app for children with ARFID.'
+        },
+        {
+          company: 'CS130',
+          cardTitle: 'Deep Fake Detector',
+          description: 'Developed a multimodal CNN-LSTM model for deep fake detection.'
+        },
+        {
+          company: 'HackHarvard',
+          cardTitle: 'CiviClick',
+          description: 'Vote for your local representative! Wait—who is your local representative?'
+        },
+        {
+          company: 'PixelHacks III',
+          cardTitle: 'Elixir',
+          description: 'Helped Alzheimer’s patients communicate better using an iOS app. My first ever hackathon!'
+        }
+      ]
     },
-    { 
-      id: 'amazon', 
-      title: 'Datamaker 2.0', 
-      company: 'Amazon', 
-      cardTitle: 'Datamaker 2.0',
-      description: 'Automated Alexa data preparation for ASR model training using Apache Spark and Hudi.' 
-    },
-    { 
-      id: 'biodesign', 
-      title: 'Nourish', 
-      company: 'Stanford Byers Center for Biodesign', 
-      cardTitle: 'Nourish',
-      description: 'iOS app for children with eating disorders built on Stanford Spezi and Apple HealthKit architecture.' 
-    },
-    { 
-      id: 'stanford', 
-      title: 'CS & Math', 
-      company: 'Stanford', 
-      cardTitle: 'CS & Math',
-      description: 'AI Principles, Algorithm Design, NLP, Systems, Differential Equations & Fourier Methods, Discrete Mathematics.' 
+  
+    {
+      id: 'stanford',
+      title: 'Stanford',
+      items: [
+        {
+          company: 'Systems',
+          cardTitle: 'Computer Science, B.S.',
+          description: "Classes I have really liked: Parallel Computing (CS 149), Computer Networking (CS 144), Compilers (CS 143), Data Structures & Algorithm Design (CS161), Operating Systems (CS111).",
+        },
+        {
+          company: '/math{}',
+          cardTitle: 'Mathematics, Minor',
+          description: `Just for fun :).`
+        },
+        {
+          company: 'Artifical Intelligence',
+          cardTitle: 'Computer Science',
+          description: 'Coterminal degree.'
+        }
+      ]
     }
   ];
+  
 
   const currentItemId = activeItem || hoveredItem;
   const currentItem = menuItems.find(item => item.id === currentItemId);
@@ -86,32 +132,41 @@ const Projects = () => {
       </div>
 
       {currentItem && (
-        <div className="fixed right-0 top-0 w-1/2 h-screen flex items-center  z-40 pointer-events-none">
-          
+        <div className="fixed right-0 top-0 w-1/2 h-screen flex items-center z-40 pointer-events-none">
           <div className="relative w-4/5 max-w-3xl pointer-events-auto">
-            
+
             {/* Glow */}
             <div className="absolute inset-0 dark:bg-gray-800 rounded-5xl p-3 blur-2xl bg-gradient-to-tr from-slate-300 to-red-100 dark:from-slate-700 dark:to-red-900 opacity-100"></div>
 
-            {/* CARD */}
-            <div className="relative bg-white dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-10 border dark:border-black flex flex-col text-left shadow-xl">
-              
-              <div className="flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-6 px-4 py-2 whitespace-nowrap">
-                {currentItem.company}
-              </div>
+            {/* CARD CONTAINER */}
+            <div className="relative bg-white dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-10 border dark:border-black flex flex-col text-left shadow-xl space-y-10 overflow-y-auto max-h-[80vh]">
 
-              <div className="text-4xl font-bold mb-4">
-                {currentItem.cardTitle}
-              </div>
+              {currentItem.items.map((entry, idx) => (
+                <div key={idx} className="flex flex-col">
 
-              <div className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                {currentItem.description}
-              </div>
+                  {/* company pill */}
+                  <div className="flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-4 px-4 py-2 whitespace-nowrap">
+                    {entry.company}
+                  </div>
+
+                  {/* Title */}
+                  <div className="text-xl font-bold mb-2">
+                    {entry.cardTitle}
+                  </div>
+
+                  {/* Description */}
+                  <div className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {entry.description}
+                  </div>
+
+                </div>
+              ))}
 
             </div>
           </div>
         </div>
-      )}
+        )}
+
 
       
     </div>
