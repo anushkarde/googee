@@ -4,6 +4,7 @@ import "animate.css/animate.compat.css";
 
 const Projects = () => {  
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
   
   const menuItems = [
     { 
@@ -50,6 +51,10 @@ const Projects = () => {
     }
   ];
 
+  const currentItemId = activeItem || hoveredItem;
+  const currentItem = menuItems.find(item => item.id === currentItemId);
+
+
   return (
     <div className="mt-60 flex pb-96">
       <div className="w-5/6 flex flex-col items-start justify-center px-8">
@@ -80,27 +85,35 @@ const Projects = () => {
         </div>
       </div>
 
-      {hoveredItem && (
-        <div className="fixed right-0 top-0 w-1/2 h-screen flex items-center justify-center px-8 z-40">
-            <div className="relative group">
-              <div className="absolute inset-0 dark:bg-gray-800 text-black dark:text-white rounded-5xl p-2 blur-lg bg-gradient-to-tr from-slate-300 to-red-100 dark:from-slate-700 dark:to-red-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      {currentItem && (
+        <div className="fixed right-0 top-0 w-1/2 h-screen flex items-center  z-40 pointer-events-none">
+          
+          <div className="relative w-4/5 max-w-3xl pointer-events-auto">
+            
+            {/* Glow */}
+            <div className="absolute inset-0 dark:bg-gray-800 rounded-5xl p-3 blur-2xl bg-gradient-to-tr from-slate-300 to-red-100 dark:from-slate-700 dark:to-red-900 opacity-100"></div>
+
+            {/* CARD */}
+            <div className="relative bg-white dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-10 border dark:border-black flex flex-col text-left shadow-xl">
               
-              <div className="relative bg-white border-2 dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-8 flex flex-col text-left dark:border-black min-h-80">
-                <div className='flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border-2 h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-6 px-4 py-2 whitespace-nowrap'>
-                  {menuItems.find(item => item.id === hoveredItem)?.company}
-                </div>
-                
-                <div className='text-3xl font-bold mb-4'>
-                  {menuItems.find(item => item.id === hoveredItem)?.cardTitle}
-                </div>
-                
-                <div className='text-sm text-gray-400 dark:text-gray-300 leading-relaxed'>
-                  {menuItems.find(item => item.id === hoveredItem)?.description}
-                </div>
+              <div className="flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-6 px-4 py-2 whitespace-nowrap">
+                {currentItem.company}
               </div>
+
+              <div className="text-4xl font-bold mb-4">
+                {currentItem.cardTitle}
+              </div>
+
+              <div className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                {currentItem.description}
+              </div>
+
             </div>
+          </div>
         </div>
       )}
+
+      
     </div>
   );
 }
