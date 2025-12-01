@@ -139,13 +139,13 @@ const Projects = () => {
             <div className="absolute inset-0 dark:bg-gray-800 rounded-5xl p-3 blur-2xl bg-gradient-to-tr from-slate-300 to-red-100 dark:from-slate-700 dark:to-red-900 opacity-100"></div>
 
             {/* CARD CONTAINER */}
-            <div className="relative bg-white dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-10 border dark:border-black flex flex-col text-left shadow-xl space-y-10 overflow-y-auto max-h-[80vh]">
-
+            <div className="relative bg-white dark:bg-neutral-900 text-black dark:text-white rounded-5xl p-10 border dark:border-black flex flex-col text-left shadow-xl space-y-8 overflow-y-auto max-h-[80vh]">
+              
               {currentItem.items.map((entry, idx) => (
                 <div key={idx} className="flex flex-col">
 
                   {/* company pill */}
-                  <div className="flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-4 px-4 py-2 whitespace-nowrap">
+                  <div className="flex items-center justify-center border-red-100 bg-red-50 dark:border-red-950 dark:bg-red-900 border h-8 w-fit rounded-2xl text-xs font-semibold text-red-800 dark:text-gray-50 mb-4 px-4 whitespace-nowrap">
                     {entry.company}
                   </div>
 
